@@ -1,7 +1,6 @@
 server:
   port: ${PORT:0}
 
-
 spring:
   web:
     resources:
@@ -24,8 +23,12 @@ userservice:
   secret: secret
   appointment:
     url: localhost:8880/api/v1/
+
 eureka:
   client:
-    service-url: http://localhost:8010/eureka
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+    register-with-eureka: true
+    fetch-registry: true
   instance:
     instance-id: ${spring.application.name}:${random.value}
