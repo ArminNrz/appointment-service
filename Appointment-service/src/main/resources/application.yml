@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:0}
+
+spring:
+  web:
+    resources:
+      add-mappings: false
+  application:
+    name: appoitments-ws
+  datasource:
+    url: jdbc:mysql://localhost:3306/appointments?createDatabaseIfNotExist=true
+    username: root
+    password: Armin#123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        driverClassName:
+          com.mysql.cj.jdbc.Driver
+        dialect:
+          org.hibernate.dialect.MySQL8Dialect
+    open-in-view: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: appointments
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
