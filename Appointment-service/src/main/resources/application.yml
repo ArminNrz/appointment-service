@@ -6,7 +6,7 @@ spring:
     resources:
       add-mappings: false
   application:
-    name: appoitments-ws
+    name: appointment-ws
   datasource:
     url: jdbc:mysql://localhost:3306/appointments?createDatabaseIfNotExist=true
     username: root

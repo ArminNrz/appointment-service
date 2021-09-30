@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "job", url = "${userservice.appointment.url}")
+@FeignClient("appointment-ws")
 public interface JobFeignClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/job")
