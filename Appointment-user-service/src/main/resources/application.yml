@@ -1,0 +1,31 @@
+server:
+  port: ${PORT:0}
+
+
+spring:
+  web:
+    resources:
+      add-mappings: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/AppointmentsUserService?createDatabaseIfNotExist=true
+    username: root
+    password: Armin#123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+  application:
+    name: user-ws
+
+userservice:
+  secret: secret
+  appointment:
+    url: localhost:8880/api/v1/
+eureka:
+  client:
+    service-url: http://localhost:8010/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
