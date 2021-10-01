@@ -26,11 +26,6 @@ spring:
     locations: classpath:migrations
     enabled: false
 
-userservice:
-  secret: secret
-  appointment:
-    url: localhost:8880/api/v1/
-
 eureka:
   client:
     service-url:
