@@ -1,6 +1,7 @@
 package com.appoitment.userservice.service.thirdparty.appointmentService.prepareJob;
 
 import com.appoitment.userservice.model.PrepareJobModel;
+import com.appoitment.userservice.service.thirdparty.appointmentService.AppointmentFeignClient;
 import com.appoitment.userservice.service.thirdparty.appointmentService.prepareJob.dto.PrepareJobCreateDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class PrepareJobService {
 
-    private final PrepareJobFeignClient feignClient;
+    private final AppointmentFeignClient feignClient;
 
     public PrepareJobModel create(PrepareJobCreateDTO dto) {
 
@@ -24,7 +25,7 @@ public class PrepareJobService {
         PrepareJobModel model;
 
         try {
-            model = feignClient.create(dto);
+            model = feignClient.createPrepareJob(dto);
             log.info("Register prepare job: {}, for user: {} by user: {}", model, dto.getServiceOwnerAccountId(), dto.getCreatorAccountId());
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, e.getMessage());
@@ -40,7 +41,7 @@ public class PrepareJobService {
         List<PrepareJobModel> models;
 
         try {
-            models = feignClient.getAll(ownerAccountId, page, size);
+            models = feignClient.getAllPrepareJobs(ownerAccountId, page, size);
             log.info("Get all prepareJob: {}", models);
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, e.getMessage());

@@ -18,6 +18,13 @@ spring:
     show-sql: false
   application:
     name: user-ws
+  flyway:
+    user: root
+    password: Armin#123
+    schemas: public
+    url: jdbc:mysql://localhost:3306/AppointmentsUserService
+    locations: classpath:migrations
+    enabled: false
 
 userservice:
   secret: secret

@@ -1,6 +1,7 @@
 package com.appoitment.userservice.service.thirdparty.appointmentService.jobProvider;
 
 import com.appoitment.userservice.model.JobProviderModel;
+import com.appoitment.userservice.service.thirdparty.appointmentService.AppointmentFeignClient;
 import com.appoitment.userservice.service.thirdparty.appointmentService.jobProvider.dto.JobProviderCreateDTO;
 import com.appoitment.userservice.service.thirdparty.appointmentService.jobProvider.dto.JobProviderUpdateDTO;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class JobProviderService {
 
-    private final JobProviderFeignClient feignClient;
+    private final AppointmentFeignClient feignClient;
 
     public JobProviderModel create(JobProviderCreateDTO dto) {
 
@@ -25,7 +26,7 @@ public class JobProviderService {
         JobProviderModel model;
 
         try {
-            model = feignClient.create(dto);
+            model = feignClient.createJobProvider(dto);
             log.info("Register jobProvider: {}, for user: {}", model, dto.getAccountId());
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
@@ -41,7 +42,7 @@ public class JobProviderService {
         JobProviderModel model;
 
         try {
-            model = feignClient.update(dto);
+            model = feignClient.updateJobProvider(dto);
             log.info("Updated jobProvider: {}", model);
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
@@ -57,7 +58,7 @@ public class JobProviderService {
         List<JobProviderModel> models;
 
         try {
-            models = feignClient.getAll(accountId, page, size);
+            models = feignClient.getAllJobProviders(accountId, page, size);
             log.info("Get all jobProviders: {}", models);
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");

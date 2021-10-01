@@ -1,6 +1,7 @@
 package com.appoitment.userservice.service.thirdparty.appointmentService.job;
 
 import com.appoitment.userservice.model.JobModel;
+import com.appoitment.userservice.service.thirdparty.appointmentService.AppointmentFeignClient;
 import com.appoitment.userservice.service.thirdparty.appointmentService.job.dto.JobCreateDTO;
 import com.appoitment.userservice.service.thirdparty.appointmentService.job.dto.JobUpdateDTO;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class JobService {
 
-    private final JobFeignClient feignClient;
+    private final AppointmentFeignClient feignClient;
 
     public JobModel create(JobCreateDTO dto) {
 
@@ -25,7 +26,7 @@ public class JobService {
         JobModel model;
 
         try {
-            model = feignClient.create(dto);
+            model = feignClient.createJob(dto);
             log.info("Register job: {}, for user: {}", model, dto.getAccountId());
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
@@ -41,7 +42,7 @@ public class JobService {
         JobModel model;
 
         try {
-            model = feignClient.update(dto);
+            model = feignClient.updateJob(dto);
             log.info("Update job: {}, for user: {}", model, dto.getAccountId());
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
@@ -57,7 +58,7 @@ public class JobService {
         List<JobModel> models;
 
         try {
-            models = feignClient.getAll(accountId, page, size);
+            models = feignClient.getAllJobs(accountId, page, size);
             log.info("Get all jobs: {}, for user: {}", models, accountId);
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");

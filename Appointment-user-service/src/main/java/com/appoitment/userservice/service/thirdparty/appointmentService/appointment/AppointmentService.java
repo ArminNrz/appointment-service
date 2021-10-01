@@ -1,6 +1,7 @@
 package com.appoitment.userservice.service.thirdparty.appointmentService.appointment;
 
 import com.appoitment.userservice.model.AppointmentModel;
+import com.appoitment.userservice.service.thirdparty.appointmentService.AppointmentFeignClient;
 import com.appoitment.userservice.service.thirdparty.appointmentService.appointment.dto.AppointmentRegisterDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public class AppointmentService {
         AppointmentModel model;
 
         try {
-            model = feignClient.register(dto);
+            model = feignClient.registerAppointment(dto);
             log.info("Register appointments: {}, for user: {}", model, dto.getJobReceiverUsername());
         } catch (Exception e) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");

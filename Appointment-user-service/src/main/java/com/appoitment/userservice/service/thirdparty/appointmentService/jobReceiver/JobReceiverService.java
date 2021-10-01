@@ -1,5 +1,6 @@
 package com.appoitment.userservice.service.thirdparty.appointmentService.jobReceiver;
 
+import com.appoitment.userservice.service.thirdparty.appointmentService.AppointmentFeignClient;
 import com.appoitment.userservice.service.thirdparty.appointmentService.jobReceiver.dto.JobReceiverCreateDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,7 @@ import org.zalando.problem.Status;
 @RequiredArgsConstructor
 public class JobReceiverService {
 
-    private final JobReceiverFeignClient feignClient;
+    private final AppointmentFeignClient feignClient;
 
     public void create(String accountId) {
 
@@ -20,7 +21,7 @@ public class JobReceiverService {
         JobReceiverCreateDTO dto = new JobReceiverCreateDTO(accountId);
 
         try {
-            feignClient.create(dto);
+            feignClient.createJobReceiver(dto);
             log.info("Registered jobReceiver: {}", dto);
         } catch (Exception exception) {
             throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
