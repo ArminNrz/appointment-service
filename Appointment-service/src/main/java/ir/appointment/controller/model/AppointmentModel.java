@@ -15,6 +15,7 @@ public class AppointmentModel {
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String receiverName;
     private String ownerName;
 
     public AppointmentModel(AppointmentView view) {
@@ -25,5 +26,6 @@ public class AppointmentModel {
         this.startTime = view.getStartTime();
         this.endTime = view.getEndTime();
         this.ownerName = view.getOwnerName();
+        this.receiverName = view.getUsername();
     }
 }
