@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gateway</groupId>
-	<artifactId>Gateway-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>gateway-service</artifactId>
+	<version>0.0.1</version>
 	<name>Gateway-service</name>
 	<description>Gateway service for appointment service</description>
 	<properties>
