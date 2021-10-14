@@ -1,11 +1,32 @@
-version: '2.2'
+version: '3.3'
+
+networks:
+  ntalphash:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+
 services:
-  appointments-user-service-mysql:
+  mysql:
+    build:
+      context: .
     image: mysql:8.0
-    environment:
-      - MYSQL_USER=test
-      - MYSQL_ROOT_PASSWORD=123
-      - MYSQL_DATABASE=appointments-user-service
+    restart: unless-stopped
+    container_name: appointment-rdbms
+    volumes:
+      - data-volume:/var/lib/mysql
+    networks:
+      ntalphash:
+        ipv4_address: 172.20.0.2
     ports:
-      - 3309:3306
-    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+      - target: 3306
+        published: 3309
+        protocol: tcp
+        mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+
+volumes:
+  data-volume:
