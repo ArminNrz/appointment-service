@@ -3,6 +3,7 @@ services:
   appointments-user-service-mysql:
     image: mysql:8.0
     environment:
+      - MYSQL_USER=test
       - MYSQL_ROOT_PASSWORD=123
       - MYSQL_DATABASE=appointments-user-service
     ports:
