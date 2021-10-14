@@ -1,0 +1,11 @@
+version: '1'
+services:
+  appointments-user-service-mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=appointments-user-service
+    ports:
+      - 3307:3306
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
