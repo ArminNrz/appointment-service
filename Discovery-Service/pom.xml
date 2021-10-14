@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.discovery</groupId>
-    <artifactId>Discovery-Service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>discovery-service</artifactId>
+    <version>0.0.1</version>
     <name>Discovery-Service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
