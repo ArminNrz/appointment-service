@@ -6,9 +6,9 @@ spring:
     resources:
       add-mappings: false
   datasource:
-    url: jdbc:mysql://localhost:3306/AppointmentsUserService?createDatabaseIfNotExist=true
-    username: root
-    password: Armin#123
+    url: jdbc:mysql://${APO_MYSQL_HOST}:${APO_MYSQL_PORT:3306}/${APO_MYSQL_DATABASE}?createDatabaseIfNotExist=true
+    username: ${APO_MYSQL_USER}
+    password: ${APO_MYSQL_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,17 +19,17 @@ spring:
   application:
     name: user-ws
   flyway:
-    user: root
-    password: Armin#123
+    user: ${APO_MYSQL_USER}
+    password: ${APO_MYSQL_PASSWORD}
     schemas: public
-    url: jdbc:mysql://localhost:3306/AppointmentsUserService
+    url: jdbc:mysql://${APO_MYSQL_HOST}:${APO_MYSQL_PORT:3306}/${APO_MYSQL_DATABASE}
     locations: classpath:migrations
     enabled: false
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8010/eureka
+      defaultZone: http://${APO_DISCOVERY_HOST}:8010/eureka
     register-with-eureka: true
     fetch-registry: true
   instance:
