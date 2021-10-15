@@ -1,0 +1,1 @@
+insert into app_user_roles(app_user_id, roles_id) VALUES (1, 2);

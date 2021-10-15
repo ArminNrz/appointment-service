@@ -6,9 +6,9 @@ spring:
     resources:
       add-mappings: false
   datasource:
-    url: jdbc:mysql://${APO_MYSQL_HOST}:${APO_MYSQL_PORT:3306}/${APO_MYSQL_DATABASE}?createDatabaseIfNotExist=true
-    username: ${APO_MYSQL_USER}
-    password: ${APO_MYSQL_PASSWORD}
+    url: jdbc:mysql://172.20.0.2:3306/${APO_MYSQL_DATABASE}?createDatabaseIfNotExist=true
+    username: root
+    password: admin
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,10 +19,10 @@ spring:
   application:
     name: user-ws
   flyway:
-    user: ${APO_MYSQL_USER}
-    password: ${APO_MYSQL_PASSWORD}
+    user: root
+    password: admin
     schemas: public
-    url: jdbc:mysql://${APO_MYSQL_HOST}:${APO_MYSQL_PORT:3306}/${APO_MYSQL_DATABASE}
+    url: jdbc:mysql://172.20.0.2:3306/${APO_MYSQL_DATABASE}
     locations: classpath:migrations
     enabled: false
 
