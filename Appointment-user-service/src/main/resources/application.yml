@@ -34,3 +34,16 @@ eureka:
     fetch-registry: true
   instance:
     instance-id: ${spring.application.name}:${random.value}
+
+userservice:
+  secret: secret123456789secret
+
+logging:
+  level:
+    com:
+      appoitment:
+        userservice:
+          service:
+            thirdparty:
+              appointmentService:
+                AppointmentFeignClient: debug

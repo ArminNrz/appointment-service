@@ -6,8 +6,6 @@ import com.appoitment.userservice.service.thirdparty.appointmentService.prepareJ
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 
 import java.util.List;
 
@@ -24,12 +22,8 @@ public class PrepareJobService {
 
         PrepareJobModel model;
 
-        try {
-            model = feignClient.createPrepareJob(dto);
-            log.info("Register prepare job: {}, for user: {} by user: {}", model, dto.getServiceOwnerAccountId(), dto.getCreatorAccountId());
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, e.getMessage());
-        }
+        model = feignClient.createPrepareJob(dto);
+        log.info("Register prepare job: {}, for user: {} by user: {}", model, dto.getServiceOwnerAccountId(), dto.getCreatorAccountId());
 
         return model;
     }
@@ -40,12 +34,8 @@ public class PrepareJobService {
 
         List<PrepareJobModel> models;
 
-        try {
-            models = feignClient.getAllPrepareJobs(ownerAccountId, page, size);
-            log.info("Get all prepareJob: {}", models);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, e.getMessage());
-        }
+        models = feignClient.getAllPrepareJobs(ownerAccountId, page, size);
+        log.info("Get all prepareJob: {}", models);
 
         return models;
     }

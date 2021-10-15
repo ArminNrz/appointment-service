@@ -6,8 +6,6 @@ import com.appoitment.userservice.service.thirdparty.appointmentService.appointm
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 
 import java.util.List;
 
@@ -24,12 +22,8 @@ public class AppointmentService {
 
         AppointmentModel model;
 
-        try {
-            model = feignClient.registerAppointment(dto);
-            log.info("Register appointments: {}, for user: {}", model, dto.getJobReceiverUsername());
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        model = feignClient.registerAppointment(dto);
+        log.info("Register appointments: {}, for user: {}", model, dto.getJobReceiverUsername());
 
         return model;
     }
@@ -40,12 +34,8 @@ public class AppointmentService {
 
         List<AppointmentModel> models;
 
-        try {
-            models = feignClient.getAppointments(accountId, date);
-            log.info("Appointments for accountId: {}, in date: {}, is: {}", accountId, date, models);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        models = feignClient.getAppointments(accountId, date);
+        log.info("Appointments for accountId: {}, in date: {}, is: {}", accountId, date, models);
 
         return models;
     }

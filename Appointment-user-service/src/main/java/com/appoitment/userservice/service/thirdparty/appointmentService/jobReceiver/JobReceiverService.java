@@ -5,8 +5,6 @@ import com.appoitment.userservice.service.thirdparty.appointmentService.jobRecei
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 
 @Service
 @Slf4j
@@ -20,11 +18,7 @@ public class JobReceiverService {
         log.debug("Try to create joReceiver with accountId: {}", accountId);
         JobReceiverCreateDTO dto = new JobReceiverCreateDTO(accountId);
 
-        try {
-            feignClient.createJobReceiver(dto);
-            log.info("Registered jobReceiver: {}", dto);
-        } catch (Exception exception) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        feignClient.createJobReceiver(dto);
+        log.info("Registered jobReceiver: {}", dto);
     }
 }

@@ -6,8 +6,6 @@ import com.appoitment.userservice.service.thirdparty.appointmentService.jobOwner
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 
 import java.util.List;
 
@@ -22,12 +20,8 @@ public class JobOwnerService {
 
         log.debug("Try to create job owner for jobOwnerDTO: {}", dto);
 
-        try {
-            feignClient.createJobOwner(dto);
-            log.info("Register jobOwner: {} for user: {}", dto.getName(), dto.getAccountId());
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        feignClient.createJobOwner(dto);
+        log.info("Register jobOwner: {} for user: {}", dto.getName(), dto.getAccountId());
     }
 
     public List<AppointmentModel> getAppointments(String accountId, String date) {
@@ -35,12 +29,8 @@ public class JobOwnerService {
         log.debug("Try to get appointments of accountId: {}, in date: {}", accountId, date);
         List<AppointmentModel> models;
 
-        try {
-            models = feignClient.getOwnerAppointments(accountId, date);
-            log.info("Appointments of accountId: {}, in date: {}, is: {}", accountId, date, models);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        models = feignClient.getOwnerAppointments(accountId, date);
+        log.info("Appointments of accountId: {}, in date: {}, is: {}", accountId, date, models);
 
         return models;
     }
@@ -50,12 +40,8 @@ public class JobOwnerService {
         log.debug("Try to get appointments of accountId: {}, with providerId: {}, in date: {}", accountId, providerId, date);
         List<AppointmentModel> models;
 
-        try {
-            models = feignClient.getOwnerAppointmentsByProviderId(accountId, date, providerId);
-            log.info("Appointments of accountId: {}, with providerId: {} in date: {}, is: {}", accountId, providerId, date, models);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        models = feignClient.getOwnerAppointmentsByProviderId(accountId, date, providerId);
+        log.info("Appointments of accountId: {}, with providerId: {} in date: {}, is: {}", accountId, providerId, date, models);
 
         return models;
     }

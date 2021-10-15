@@ -7,8 +7,6 @@ import com.appoitment.userservice.service.thirdparty.appointmentService.jobProvi
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 
 import java.util.List;
 
@@ -25,12 +23,8 @@ public class JobProviderService {
 
         JobProviderModel model;
 
-        try {
-            model = feignClient.createJobProvider(dto);
-            log.info("Register jobProvider: {}, for user: {}", model, dto.getAccountId());
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        model = feignClient.createJobProvider(dto);
+        log.info("Register jobProvider: {}, for user: {}", model, dto.getAccountId());
 
         return model;
     }
@@ -41,12 +35,8 @@ public class JobProviderService {
 
         JobProviderModel model;
 
-        try {
-            model = feignClient.updateJobProvider(dto);
-            log.info("Updated jobProvider: {}", model);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        model = feignClient.updateJobProvider(dto);
+        log.info("Updated jobProvider: {}", model);
 
         return model;
     }
@@ -57,12 +47,8 @@ public class JobProviderService {
 
         List<JobProviderModel> models;
 
-        try {
-            models = feignClient.getAllJobProviders(accountId, page, size);
-            log.info("Get all jobProviders: {}", models);
-        } catch (Exception e) {
-            throw Problem.valueOf(Status.BAD_REQUEST, "There is an error with appointment service");
-        }
+        models = feignClient.getAllJobProviders(accountId, page, size);
+        log.info("Get all jobProviders: {}", models);
 
         return models;
     }
