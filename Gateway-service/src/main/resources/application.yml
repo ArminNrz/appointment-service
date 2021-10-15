@@ -1,7 +1,7 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8010/eureka
+      defaultZone: http://${APO_DISCOVERY_HOST}:8010/eureka
 
 spring:
   application:

@@ -8,9 +8,9 @@ spring:
   application:
     name: appointment-ws
   datasource:
-    url: jdbc:mysql://localhost:3306/appointments?createDatabaseIfNotExist=true
+    url: jdbc:mysql://172.20.0.2:3306/appointments?createDatabaseIfNotExist=true
     username: root
-    password: Armin#123
+    password: admin
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,7 +23,7 @@ spring:
     open-in-view: true
   data:
     mongodb:
-      host: localhost
+      host: 172.21.0.3
       port: 27017
       database: appointments
 

@@ -1,0 +1,32 @@
+version: '3.3'
+
+networks:
+  appointment-mysql-bridge:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+
+services:
+  mysql-server:
+    build:
+      context: .
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: appointment-service-mysql
+    volumes:
+      - data-volume:/var/lib/mysql
+    networks:
+      appointment-mysql-bridge:
+        ipv4_address: 172.20.0.2
+    ports:
+      - target: 3306
+        published: 3310
+        protocol: tcp
+        mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+
+volumes:
+  data-volume:

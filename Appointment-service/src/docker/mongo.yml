@@ -1,0 +1,31 @@
+version: '3.3'
+
+networks:
+  appointment-mongo-bridge:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24
+
+services:
+  mongo-server:
+    image: mongo:latest
+    container_name: appointment-service-mongo
+    ports:
+      - target: 27017
+        published: 27018
+        protocol: tcp
+        mode: host
+    environment:
+      - MONGO_INITDB_DATABASE=appointments
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      appointment-mongo-bridge:
+        ipv4_address: 172.21.0.3
+
+volumes:
+  mongodb_data_container:
