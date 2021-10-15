@@ -9,7 +9,7 @@ networks:
         - subnet: 172.20.0.0/24
 
 services:
-  mysql-server:
+  mysql-appointment-server:
     build:
       context: .
     image: mysql:8.0
@@ -22,7 +22,7 @@ services:
         ipv4_address: 172.20.0.2
     ports:
       - target: 3306
-        published: 3310
+        published: 3311
         protocol: tcp
         mode: host
     environment:

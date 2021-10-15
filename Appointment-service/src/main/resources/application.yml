@@ -26,6 +26,8 @@ spring:
       host: 172.21.0.3
       port: 27017
       database: appointments
+      username: admin
+      password: admin
 
 eureka:
   client:

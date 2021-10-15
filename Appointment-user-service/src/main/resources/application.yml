@@ -6,7 +6,7 @@ spring:
     resources:
       add-mappings: false
   datasource:
-    url: jdbc:mysql://172.20.0.2:3306/${APO_MYSQL_DATABASE}?createDatabaseIfNotExist=true
+    url: jdbc:mysql://172.20.0.2:3306/appointment_user?createDatabaseIfNotExist=true
     username: root
     password: admin
   jpa:
@@ -22,14 +22,14 @@ spring:
     user: root
     password: admin
     schemas: public
-    url: jdbc:mysql://172.20.0.2:3306/${APO_MYSQL_DATABASE}
+    url: jdbc:mysql://172.20.0.2:3306/appointment_user
     locations: classpath:migrations
     enabled: false
 
 eureka:
   client:
     service-url:
-      defaultZone: http://${APO_DISCOVERY_HOST}:8010/eureka
+      defaultZone: http://localhost:8010/eureka
     register-with-eureka: true
     fetch-registry: true
   instance:
